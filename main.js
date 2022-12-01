@@ -44,6 +44,11 @@ for (const numBtn of number) {
 
 for (const ope of opera) {
   ope.addEventListener('click', () => {
+    operators(ope);
+  });
+}
+
+function operators(ope) {
     if (joinedArray2.length !== 0) {
       joinedArray1 = operate(op, joinedArray2, joinedArray1);
     }
@@ -70,7 +75,6 @@ for (const ope of opera) {
       op = divide;
     } 
     console.log(op);
-  }); 
 }
 
 equal.addEventListener('click', () => {
