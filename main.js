@@ -30,6 +30,7 @@ const equal = document.getElementById('equals');
 let numArray = [];
 let joinedArray1 = [];
 let joinedArray2 = [];
+
 let op = ''; 
 
 for (const numBtn of number) {
@@ -37,8 +38,8 @@ for (const numBtn of number) {
     num = numBtn.textContent;
     numArray.push(num);
     arrayCombined();
-    console.log({joinedArray1});
     console.log({joinedArray2});
+    console.log({joinedArray1});
   });
 }
 
@@ -49,13 +50,13 @@ for (const ope of opera) {
 }
 
 function operators(ope) {
-    if (joinedArray2.length !== 0) {
-      joinedArray1 = operate(op, joinedArray2, joinedArray1);
+    if (joinedArray1.length !== 0) {
+      joinedArray2 = operate(op, joinedArray1, joinedArray2);
     }
 
-    console.log({joinedArray2});
-    joinedArray2 = joinedArray1;
-    joinedArray1 = [];
+    console.log({joinedArray1});
+    joinedArray1 = joinedArray2;
+    joinedArray2 = [];
     numArray = [];
 
     op = ope.textContent;
@@ -78,7 +79,7 @@ function operators(ope) {
 }
 
 equal.addEventListener('click', () => {
-  console.log(operate(op, joinedArray2, joinedArray1))
+  console.log(operate(op, joinedArray1, joinedArray2))
 });
 
 //function to combine an array of strings into one number 
@@ -87,7 +88,7 @@ function arrayCombined() {
     let numArrayJoined = +(numArray.join(''));
     document.getElementById('display')
     .innerHTML = numArrayJoined;
-    joinedArray1 = numArrayJoined; 
+    joinedArray2 = numArrayJoined; 
 }
 
 
