@@ -23,32 +23,67 @@ function operate (operator, a, b) {
   return operator(a, b);
 }
 
-console.log(operate(divide, 10, 5))
+let number = document.querySelectorAll('.number');
+let opera = document.querySelectorAll('.opera');
+const equal = document.getElementById('equals');
 
+let numArray = [];
+let joinedArray1 = [];
+let joinedArray2 = [];
+let op = ''; 
 
-let numButton = document.querySelectorAll('.number');
-
-let numArray1 = [];
-let array1Concacted = [];
-let numArray2 = [];
-let array2Concacted = [];
-
-
-for (const numBtn of numButton) {
+for (const numBtn of number) {
   numBtn.addEventListener('click', () => {
     num = numBtn.textContent;
-    numArray1.push(num);
-    let numArrayJoin = +(numArray1.join(''));
-    document.getElementById('display')
-    .innerHTML = numArrayJoin; 
-    array1Concacted.push(numArrayJoin);  
+    numArray.push(num);
+    arrayCombined();
+    console.log({joinedArray1});
+    console.log({joinedArray2});
   });
 }
 
-console.log (array1Concacted);
+for (const ope of opera) {
+  ope.addEventListener('click', () => {
+    if (joinedArray2.length !== 0) {
+      joinedArray1 = operate(op, joinedArray2, joinedArray1);
+    }
 
+    console.log({joinedArray2});
+    joinedArray2 = joinedArray1;
+    joinedArray1 = [];
+    numArray = [];
 
- 
+    op = ope.textContent;
+    console.log(op);
+    if (op === '+') {
+      op = add;
+    }
+    if (op === '-') {
+      op = subtract;
+    }
 
+    if (op === 'x') {
+      op = multiply;
+    }
+
+    if (op === '/') {
+      op = divide;
+    } 
+    console.log(op);
+  }); 
+}
+
+equal.addEventListener('click', () => {
+  console.log(operate(op, joinedArray2, joinedArray1))
+});
+
+//function to combine an array of strings into one number 
+
+function arrayCombined() {
+    let numArrayJoined = +(numArray.join(''));
+    document.getElementById('display')
+    .innerHTML = numArrayJoined;
+    joinedArray1 = numArrayJoined; 
+}
 
 
