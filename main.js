@@ -4,18 +4,19 @@ let number = document.querySelectorAll('.number');
 let opera = document.querySelectorAll('.opera');
 const equal = document.getElementById('equals');
 const clear = document.getElementById('clear');
-const display = document.getElementById('display')
-const decimal = document.getElementById('decimal')
+const display = document.getElementById('display');
+const decimal = document.getElementById('decimal');
 
 let numArray = [];
 let joinedArray1 = [];
 let joinedArray2 = [];
 let op = '';
+let equalClicked = false;
+let operaClicked = false;
 
 decimal.addEventListener('click', () => {
-  if (numArray.length === 0 || numArray.includes('.') == false) {
+  if (numArray.length === 0 || numArray.includes('.') === false) {
     numArray.push('.');
-    console.log(numArray);
   }
   else {
     decimal.removeEventListener;
@@ -24,27 +25,25 @@ decimal.addEventListener('click', () => {
 
 for (const numBtn of number) {
   numBtn.addEventListener('click', () => {
-    if ((joinedArray1.length !== 0) && (joinedArray2.length !== 0) 
-    && (numArray.length !== 0)) {
-      numArray = [];
-      joinedArray1 = [];
-      joinedArray2 = [];
-      display.innerHTML = 0;
+    if (equalClicked === true) {
+      startOver();
     }
 
+    equalClicked = false;
+    operaClicked = false;
     num = numBtn.textContent;
     numArray.push(num);
     arrayCombined();
-    console.log({numArray});
-    console.log({joinedArray2});
-    console.log({joinedArray1});
   });
 }
 
 for (const ope of opera) {
   ope.addEventListener('click', () => {
+    if(operaClicked === false) {
     operators(ope);
-  });
+    operaClicked = true;
+  }
+});
 }
 
 //makes equal button work
@@ -52,15 +51,13 @@ for (const ope of opera) {
 equal.addEventListener('click', () => {
   let total = operate(op, joinedArray1, joinedArray2);
   display.innerHTML = total;
+  equalClicked = true; 
 });
 
 //clears all the arrays
 
 clear.addEventListener('click', () => {
-  numArray = [];
-  joinedArray1 = [];
-  joinedArray2 = [];
-  display.innerHTML = 0;
+  startOver();
 });
 
 // ****** basic math functions *************/
@@ -99,11 +96,12 @@ function arrayCombined() {
 //connects html operators to js operator functions
 
 function operators(ope) {
+  equalClicked = false;
+
   if (joinedArray1.length !== 0) {
     joinedArray2 = operate(op, joinedArray1, joinedArray2);
   }
 
-  console.log({joinedArray1});
   joinedArray1 = joinedArray2;
   joinedArray2 = [];
   numArray = [];
@@ -125,7 +123,16 @@ function operators(ope) {
 
   if (op == '/') {
     op = divide;
-  } 
+  }
+}
+
+//clears the display and arrays and starts calculating from 0
+
+function startOver() {
+  numArray = [];
+  joinedArray1 = [];
+  joinedArray2 = [];
+  display.innerHTML = 0;
 }
 
 
