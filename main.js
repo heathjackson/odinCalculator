@@ -24,16 +24,18 @@ decimal.addEventListener('click', () => {
 
 for (const numBtn of number) {
   numBtn.addEventListener('click', () => {
-    // if ((joinedArray1.length !== 0) && (joinedArray2.length !== 0)) {
-    //   numArray = [];
-    //   joinedArray1 = [];
-    //   joinedArray2 = [];
-    //   display.innerHTML = 0;
-    // }
+    if ((joinedArray1.length !== 0) && (joinedArray2.length !== 0) 
+    && (numArray.length !== 0)) {
+      numArray = [];
+      joinedArray1 = [];
+      joinedArray2 = [];
+      display.innerHTML = 0;
+    }
 
     num = numBtn.textContent;
     numArray.push(num);
     arrayCombined();
+    console.log({numArray});
     console.log({joinedArray2});
     console.log({joinedArray1});
   });
