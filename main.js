@@ -1,11 +1,12 @@
 
 
-let number = document.querySelectorAll('.number');
-let opera = document.querySelectorAll('.opera');
+const number = document.querySelectorAll('.number');
+const opera = document.querySelectorAll('.opera');
 const equal = document.getElementById('equals');
 const clear = document.getElementById('clear');
 const display = document.getElementById('display');
 const decimal = document.getElementById('decimal');
+const backButton = document.getElementById('backButton');
 
 let numArray = [];
 let joinedArray1 = [];
@@ -15,12 +16,23 @@ let equalClicked = false;
 let operaClicked = false;
 
 decimal.addEventListener('click', () => {
-  if (numArray.length === 0 || numArray.includes('.') === false) {
+  let arrayJoined1;
+  let arrayJoined2;
+
+  if (numArray.length === 0) {
+    numArray.push('0.');
+    arrayJoined1 = numArray.join('');
+    display.innerHTML = arrayJoined1;
+  }
+  else if (numArray.includes('.') === false) {
     numArray.push('.');
+    arrayJoined2 = numArray.join('');
+    display.innerHTML = arrayJoined2;
+  
   }
   else {
     decimal.removeEventListener;
-  } 
+  }  
 });
 
 for (const numBtn of number) {
@@ -31,6 +43,7 @@ for (const numBtn of number) {
 
     equalClicked = false;
     operaClicked = false;
+
     num = numBtn.textContent;
     numArray.push(num);
     arrayCombined();
@@ -49,6 +62,8 @@ for (const ope of opera) {
 //makes equal button work
 
 equal.addEventListener('click', () => {
+  if (joinedArray1.length === 0) {
+    return display.innerHTML = 'not a valid function'}
   let total = operate(op, joinedArray1, joinedArray2);
   display.innerHTML = total;
   equalClicked = true; 
@@ -58,6 +73,10 @@ equal.addEventListener('click', () => {
 
 clear.addEventListener('click', () => {
   startOver();
+});
+
+backButton.addEventListener('click', () => {
+  erase();
 });
 
 // ****** basic math functions *************/
@@ -88,7 +107,7 @@ function operate (operator, a, b) {
 
 function arrayCombined() {
     let numArrayJoined = +(numArray.join(''));
-    rounded = Number(Math.round(numArrayJoined+'e'+10)+'e-'+10);
+    rounded = Number(Math.round(numArrayJoined+'e10')+'e-10');
     display.innerHTML = rounded;
     joinedArray2 = rounded; 
 }
@@ -135,4 +154,9 @@ function startOver() {
   display.innerHTML = 0;
 }
 
+//erases the last number
 
+function erase() {
+  numArray.pop();
+  arrayCombined();
+}
