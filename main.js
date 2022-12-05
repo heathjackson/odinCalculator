@@ -63,7 +63,7 @@ for (const ope of opera) {
 
 equal.addEventListener('click', () => {
   if (joinedArray1.length === 0) {
-    return display.innerHTML = 'not a valid function'}
+    return}
   let total = operate(op, joinedArray1, joinedArray2);
   display.innerHTML = total;
   equalClicked = true; 
@@ -94,8 +94,10 @@ function multiply (a, b) {
 }
 
 function divide (a, b) {
-  return a / b;
-}
+  if (b == 0) {
+    return display.innerHTML = `You can't divide by 0 sucka!`
+  } else {return a / b;
+}}
 
 //************ operator function **************/
 

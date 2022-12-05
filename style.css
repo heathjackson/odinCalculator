@@ -33,7 +33,7 @@ body {
 }
 
 .coloredButtons {
-  background-color: #cf9222;
+  background-color: #b47706;
 }
 
 .coloredButtons:hover {
@@ -74,6 +74,6 @@ button:hover {
   width: 300px;
   background-color: rgb(243, 240, 240);
   border: black 2px solid;
-  font: 30px bolder;
+  font: 25px bolder;
 }
 
