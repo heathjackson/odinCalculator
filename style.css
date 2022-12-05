@@ -12,10 +12,10 @@ body {
   border-radius: 10px;
   flex-direction: column;
   align-items: center;
-  background-color: lightgray;
+  background-color: rgb(173, 182, 200);
   padding-top: 20px;
   padding-bottom: 40px;
-  box-shadow: 5px 10px #858484
+  box-shadow: 5px 10px 8px #888888;
 }
 
 #title {
@@ -44,13 +44,15 @@ button {
   background-color: #525151;
   border: 1px solid black;
   border-radius: 20px;
-  box-shadow: 3px 4px #858484;
+  box-shadow: 5px 10px 8px #888888;
   color:rgb(243, 240, 240);
   font-size: 20px;
 }
 
 button:hover {
   background-color: #a1a0a0;
+  transform: scale(.95);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
 #zero {
